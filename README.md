@@ -1,6 +1,6 @@
 # Processing data from IoT Hub with Azure Functions
 
-(short, 1-3 sentenced, description of the project)
+In this quick sample you will learn how to capture data from your devices or sensors, perform aggregation, filtering or some other custom processing on this data, and store it on a database. All this will be done by setting up the integration between IoT Hub and Azure Functions, while learning a bit about triggers and bindings for Azure Functions, and drop your processed data on Cosmos DB.
 
 ## Features
 This sample project will cover the technologies and services below:
@@ -20,6 +20,8 @@ In order to complete this tutorial you will need the following:
 
 ### Step 1: IoT Hub
 First, we need to set up an **IoT Hub** and start sending messages to it. For simplicity, we chose to simulate a real device using our PC. If you’d like to do the same, follow the detailed instructions [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-get-started-simulated)
+
+**Note:** you can find the necessary folders and files (using JavaScript) already created on this repo, so you can just put your connection strings and get it working right away
 
 This one is super easy, since there’s such great documentation already. All you have to do is choose your preferred stack, create an IoT Hub, copy-paste some code, and run. The only potential snag is authentication – make sure you get those connection strings right!
 
@@ -83,13 +85,32 @@ Now it's time to hook everything together using the Azure Functions Cosmos DB ou
 5. Now, to modify the code on our Function to store the data on Cosmos DB using the output binding, and since the Function was created in Javascript, all we have to do is add the output to context.bindings
 
 ```javascript
-module.exports = function(context, IoTHubMessages) {
-    context.log('JavaScript eventhub trigger function called for message array: ${IoTHubMessages}');
+module.exports = function (context, IoTHubMessages) {
+    context.log(`JavaScript eventhub trigger function called for message array: ${IoTHubMessages}`);
+
+    var count = 0;
+    var totalTemperature = 0.0;
+    var totalHumidity = 0.0;
+    var deviceId = "";
 
     IoTHubMessages.forEach(message => {
-        context.log('Processed message: ${message}');
-        context.bindings.outputDocument = message;
+        context.log(`Processed message: ${message}`);
+        count++;
+        totalTemperature += message.temperature;
+        totalHumidity += message.humidity;
+        deviceId = message.deviceId;
     });
+
+    var output = {
+        "deviceId": deviceId,
+        "measurementsCount": count,
+        "averageTemperature": totalTemperature/count,
+        "averageHumidity": totalHumidity/count
+    };
+
+    context.log(`Output content: ${output}`);
+
+    context.bindings.outputDocument = output;
 
     context.done();
 };
