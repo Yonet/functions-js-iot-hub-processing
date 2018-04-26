@@ -1,3 +1,9 @@
+---
+services: functions, iot-hub
+platforms: js
+author: gk-8
+---
+
 # Processing data from IoT Hub with Azure Functions
 
 In this quick sample you will learn how to capture data from your devices or sensors, perform aggregation, filtering or some other custom processing on this data, and store it on a database. All this will be done by setting up the integration between IoT Hub and Azure Functions, while learning a bit about triggers and bindings for Azure Functions, and drop your processed data on Cosmos DB.
