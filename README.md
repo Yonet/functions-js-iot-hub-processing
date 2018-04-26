@@ -117,7 +117,7 @@ module.exports = function (context, IoTHubMessages) {
 ```
 This will be slightly different if you select a different language (for full reference on how to use Cosmos DB output bindings in Azure Functions see [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-integrate-store-unstructured-data-cosmosdb))
 
-Note that all we did was output to Cosmos DB, but it would have been really easy to modify the Function code to manipulate the data slightly before storing on Cosmos DB.
+Note that all we did was to aggregate data calculating average values and output to Cosmos DB, but it's easy to modify the Function code to manipulate the data on any other way before storing on Cosmos DB.
 
 6. To validate that our Function is being properly triggered and storing the IoT Hub messages, navigate to Cosmos DB and watch the messages being stored
 
