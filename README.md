@@ -17,6 +17,7 @@ This sample project will cover the technologies and services below:
 ## Getting Started
 
 ### Prerequisites
+- **Node.js version: 6.x or above**. We highly recommend using latest available LTS version of node.js 
 In order to complete this tutorial you will need the following:
 - Active Azure subscription (check out the [free account](https://azure.microsoft.com/en-us/free/))
 - Device sending messages to IoT Hub or simulator following [this instructions](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-get-started-simulated)
