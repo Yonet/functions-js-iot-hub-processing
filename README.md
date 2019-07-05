@@ -1,5 +1,6 @@
 ---
-languages: []
+languages:
+- javascript
 products:
 - azure
 - azure-functions
