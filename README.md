@@ -1,7 +1,10 @@
 ---
-services: functions, iot-hub
-platforms: js
-author: gk-8
+languages: []
+products:
+- azure
+- azure-functions
+- azure-iot-hub
+topic: sample
 ---
 
 # Processing data from IoT Hub with Azure Functions
