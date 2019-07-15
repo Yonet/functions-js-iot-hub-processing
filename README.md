@@ -5,7 +5,7 @@ products:
 - azure
 - azure-functions
 - azure-iot-hub
-topic: sample
+page_type: sample
 description: "Learn how to capture data from your devices or sensors, perform aggregation, filtering and other custom processing and store it on a database"
 ---
 
